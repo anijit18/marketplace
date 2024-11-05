@@ -1,0 +1,47 @@
+{% extends 'myapp/base.html' %}
+
+{% block body %}
+
+    <div class="flex justify-between">
+        <div class="ml-20 mt-10 font-bold text-xl">My Products</div>
+        <div class="ml-20 mt-10">
+            <a class="bg-green-500 text-white px-2 py-4 mr-8" href="{% url 'createproduct' %}">Create Product</a>
+        </div>
+    </div>
+
+    <div class="products-container p-10 m-5">
+        {% for p in products %}
+        <div class="bg-yellow-100 rounded-lg flex m-5 p-2 justify-between shadow-lg">
+            <div class="flex w-1/4">
+                <img class="h-20" src="https://cdn0.iconfinder.com/data/icons/home-screen-20/32/homescreens_camera-12-256.png" alt="image-not-available">
+                <div class="relative group">
+                    <a href="{% url 'editproduct' p.id %}">
+                        <div class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 bottom-0 p-4 justify-center items-end bg-white font-semibold">
+                            Edit Product
+                        </div>
+                        <div class="ml-5">
+                            <div class="font-bold text-sm">{{p.name}}</div>
+                            <div class="text-sm text-green-500">${{p.price}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        
+        
+            <div>
+                <div class="text-2xl">$200</div>
+                <div class="text-xs">Total earnings</div>
+            </div>
+            <div>
+                <div class="text-2xl">30</div>
+                <div class="text-xs">Total orders</div>
+            </div>
+            <div class="pr-5">
+                <div class="text-2xl">5*</div>
+                <div class="text-xs">Raitngs</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
